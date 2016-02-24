@@ -1,44 +1,46 @@
-<div class="container">
-    <h1>Search Results</h1>
-</div>
-
 <div class="container-fluid">
+
     <!-- Main Content-->
     <div id="ms-content" class="row">
-
-        {{#if model.results}}
-            <!-- Movies output-->
-            {{#each model.results as |movie|}}
-            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <div class="ms-content-tile thumbnail">
-                    <div class="img">
-                        <div class="info">
-                            <p><strong>Release Date:</strong><br/>
-                                {{movie.release_date}}
-                            </p>
-                            <p><strong>User Rating:</strong><br/>
-                                {{movie.vote_average}}
-                            </p>
-                        </div>
-                        {{#if movie.poster_path}}
-                        <img src="http://image.tmdb.org/t/p/w154{{movie.poster_path}}" alt="{{movie.original_title}}"/>
-                        {{/if}}
-                    </div>
-                    <h2><a href="https://www.themoviedb.org/movie/{{movie.id}}" title="{{movie.original_title}}">{{movie.original_title}}</a></h2>
-                </div>
-            </div>  
-            {{/each}}   
-        {{/if}}
-
-        <!-- No results 
-        {{#unless model.results}}
+        
+        <!-- Initial load -->
+        {{#unless model.hasResults}} {{#unless model.validResults}}
             <div class="container">
-                <div class="col-md-12">
-                    <h2>No Results Found</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Search For Movies</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Please enter a search term in the search box.</p>
+                    </div>
                 </div>
             </div>
-        {{/unless}}
-        -->
+        {{/unless}} {{/unless}}
+
+
+        <!-- Results found -->
+        {{#if model.movies.results}}
+            {{search-results model=model}}
+        {{/if}}
+
+
+        <!-- Search performed but no results -->
+        {{#unless model.validResults}} {{#if model.hasResults}}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>No Results Found</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                       <p>Please enter another search term.</p>
+                    </div>
+                </div>
+            </div>
+        {{/if}} {{/unless}}
 
     </div>
 </div>

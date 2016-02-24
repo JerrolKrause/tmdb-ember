@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	searchTerm : "", //Value from search inpuxbox
+	//Value from search input box
+	searchTerm : "", 
 	submit: function(e) {
 		//Pass the search term to the loadResults method on the search.js route
 		this.sendAction('loadResults', this.get('searchTerm'));
