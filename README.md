@@ -2,6 +2,8 @@
 
 A simple app that allows the user to search TMDB's movie database. Build in Ember.JS and Bootstrap.
 
+Demo: http://www.jerrolkrause.com/projects/tmdb-ember/#/search
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
